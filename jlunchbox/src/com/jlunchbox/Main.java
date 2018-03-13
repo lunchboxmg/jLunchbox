@@ -1,24 +1,23 @@
 package com.jlunchbox;
 
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
 import static org.lwjgl.glfw.GLFW.glfwInit;
+import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 import static org.lwjgl.glfw.GLFW.glfwTerminate;
 import static org.lwjgl.opengl.GL11.glViewport;
 
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
+import com.jlunchbox.core.input.Keyboard;
+import com.jlunchbox.core.input.Mouse;
 import com.jlunchbox.core.graphics.Window;
 
 public class Main {
 
-	public Main() {
-		// TODO Auto-generated constructor stub
-	}
+	public Main() { }
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+	public static void main(String[] args) { init(); run(); kill(); } 
 	
 	public static void init() {
 
@@ -32,6 +31,8 @@ public class Main {
 
 		// Create I/O elements
 		Window.create("Test Window");
+		Keyboard.create();
+		Mouse.create();
 
 		// Must do this before running OpenGL functions, but after
 		// window creation!
@@ -40,13 +41,35 @@ public class Main {
 
 	}
 	
+	private static void update() {
+
+		Window.update();
+		Keyboard.update();
+		Mouse.update();
+		glfwPollEvents();
+		if (Mouse.didScroll())
+			System.out.println("SCROLLED!");
+		if (Mouse.isButtonReleased(Mouse.RIGHT))
+			System.out.println("RIGHT RELEASED!");
+	}
+	
 	public static void run() {
-		
+
+		while(Window.isOpen()) {
+			update();
+			//Mouse.output();
+			if (Keyboard.isKeyPressed(GLFW_KEY_ESCAPE)) {
+				System.out.println("Hi!");
+				Window.requestClose();
+			}
+			Window.swap();
+		}
 	}
 	
 	public static void kill() {
 		
 		Window.close();
+		Window.destroy();
 		glfwTerminate();
 	}
 
