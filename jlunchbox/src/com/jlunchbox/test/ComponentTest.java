@@ -3,6 +3,8 @@ package com.jlunchbox.test;
 import java.util.Random;
 
 import com.jlunchbox.core.ecs.Component;
+import com.jlunchbox.core.ecs.ComponentMapper;
+import com.jlunchbox.core.ecs.ComponentType;
 import com.jlunchbox.core.util.Bag;
 
 /** 
@@ -23,6 +25,9 @@ public class ComponentTest {
 	public ComponentTest() { }
 	
 	public boolean test() {
+		
+		ComponentType type1 = new ComponentType(0, TestHealthComponent.class);
+		//ComponentMapper<TestHealthComponent> mapper = new ComponentMapper<testHealthComponent>(type1.class);
 		
 		TestHealthComponentLoader loader = new TestHealthComponentLoader();
 		
@@ -49,7 +54,6 @@ public class ComponentTest {
 		}
 		
 		return true;
-		
 	}
 
 
