@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL;
 
 import com.jlunchbox.core.input.Keyboard;
 import com.jlunchbox.core.input.Mouse;
+import com.jlunchbox.test.ComponentTest;
 import com.jlunchbox.core.graphics.Window;
 
 public class Main {
@@ -39,6 +40,8 @@ public class Main {
 		GL.createCapabilities(); // VERY IMPORTANT - DO NOT REMOVE!
 		glViewport(0, 0, Window.getWidth(), Window.getHeight());
 
+		test();
+		
 	}
 	
 	private static void update() {
@@ -71,6 +74,14 @@ public class Main {
 		Window.close();
 		Window.destroy();
 		glfwTerminate();
+	}
+	
+	public static void test() {
+		
+		ComponentTest tester = new ComponentTest();
+		
+		tester.test();
+
 	}
 
 }

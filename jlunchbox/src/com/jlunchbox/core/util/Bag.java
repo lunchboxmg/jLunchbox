@@ -62,6 +62,27 @@ public class Bag<E> {
 		return false; // item E didn't exist in the bag
 	}
 	
+	public E get(int index) throws ArrayIndexOutOfBoundsException {
+		return data[index];
+	}
+	
+	public E safeGet(int index) {
+		if (index >= data.length)
+			grow(Math.max(2 * data.length, 3 * index / 2));
+		return data[index];
+	}
+	
+	public void set(int index, E e) {
+		if (index >= data.length)
+			grow(Math.max(2 * data.length, index + 1));
+		size = Math.max(size, index + 1);
+		data[index] = e;
+	}
+	
+	public void unsafeSet(int index, E e) {
+		data[index] = e;
+	}
+
 	// Utility Functions
 	
 	/** Internal function to expand the array while preserving data
@@ -69,6 +90,11 @@ public class Bag<E> {
 	 */
 	private void grow(int newCapacity) throws ArrayIndexOutOfBoundsException {
 		data = Arrays.copyOf(data, newCapacity);
+	}
+	
+	public void clear() {
+		Arrays.fill(data, 0, size, null);
+		size = 0;
 	}
 	
 	public int size() { return size; }
