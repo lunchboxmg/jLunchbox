@@ -6,7 +6,9 @@ import com.jlunchbox.core.ecs.Component;
 import com.jlunchbox.core.ecs.ComponentManager;
 import com.jlunchbox.core.ecs.ComponentMapper;
 import com.jlunchbox.core.ecs.ComponentType;
+import com.jlunchbox.core.ecs.TestComponent;
 import com.jlunchbox.core.util.Bag;
+import com.jlunchbox.core.util.ReflectionException;
 
 /** 
  * This class is a basic test of my initial plan on how to structure
@@ -28,16 +30,31 @@ public class ComponentTest {
 	public boolean test() {
 		
 		ComponentManager cm = new ComponentManager();
+<<<<<<< HEAD
 		try {
 			TestHealthComponent tc = cm.create(0, TestHealthComponent.class);
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
+=======
+		ComponentType type1 = cm.getTypeFor(TestComponent.class);
+		System.out.println(type1.getBase());
+		try {
+			TestComponent one = cm.create(0, TestComponent.class);
+		} catch (InstantiationException | IllegalAccessException | ReflectionException e) {
+>>>>>>> b7d253410d5325e14a828bfda37d56b3f73b4e99
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+<<<<<<< HEAD
+=======
+		
+		//ComponentType type1 = new ComponentType(0, TestHealthComponent.class);
+		//ComponentMapper<TestHealthComponent> mapper = 
+		//		new ComponentMapper<TestHealthComponent>((Class<TestHealthComponent>) type1.getBase(), cm);
+>>>>>>> b7d253410d5325e14a828bfda37d56b3f73b4e99
 		
 		TestHealthComponentLoader loader = new TestHealthComponentLoader();
 		
@@ -60,7 +77,7 @@ public class ComponentTest {
 		
 		for(int i = 0; i < components.size(); i++) {
 			TestHealthComponent item = components.get(i); 
-			System.out.println(item.max);
+			//System.out.println(item.max);
 		}
 		
 		return true;
@@ -72,6 +89,7 @@ public class ComponentTest {
 		public int current;
 		public int max;
 		
+<<<<<<< HEAD
 		/** 
 		 * Base constructor for Health Component.  Health will be set at
 		 * the max value
@@ -98,6 +116,10 @@ public class ComponentTest {
 			this.max = max;
 		}
 		
+=======
+		public TestHealthComponent() { }
+
+>>>>>>> b7d253410d5325e14a828bfda37d56b3f73b4e99
 	}
 
 	public class TestHealthComponentLoader {
@@ -138,8 +160,12 @@ public class ComponentTest {
 			for (int i = 0; i < num; i++)
 				max += rand.nextInt(size) + 1;
 			max += base;
-			
-			return new TestHealthComponent(max);
+
+			TestHealthComponent out =  new TestHealthComponent();
+			out.current = max;
+			out.max = max;
+
+			return out;
 		}
 	}
 }
