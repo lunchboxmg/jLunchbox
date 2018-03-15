@@ -13,10 +13,18 @@ public class ComponentManager {
 	// Container of created types
 	private final Bag<ComponentType> types = new Bag<ComponentType>();
 	
-	private final Bag<ComponentMapper> mappers = new Bag<ComponentMapper>();
+	private final Bag<ComponentMapper> mappers = new Bag(ComponentMapper.class);
 
 	public ComponentManager() {
 
+	}
+	
+	public <T extends Component> T create(int entityId, Class<T> componentClass) throws InstantiationException, IllegalAccessException {
+		return getMapper(componentClass).create(entityId);
+	}
+	
+	protected <T extends Component> ComponentMapper<T> getMapper(Class<T> componentClass) {
+		return mappers.get(getTypeFor(componentClass).getIndex());
 	}
 	
 	public ComponentType getTypeFor(Class<? extends Component> componentClass) {
@@ -24,12 +32,12 @@ public class ComponentManager {
 		ComponentType type = typemap.get(componentClass);
 		
 		if (type == null)
-			type = create(componentClass);
+			type = createComponentType(componentClass);
 		
 		return type;
 	}
 	
-	private ComponentType create(Class<? extends Component> componentClass) {
+	public ComponentType createComponentType(Class<? extends Component> componentClass) {
 		
 		ComponentType type = new ComponentType(types.size(), componentClass);
 		typemap.put(componentClass, type);
@@ -43,6 +51,7 @@ public class ComponentManager {
 	private void createMapper(ComponentType type) {
 		
 		int index = type.getIndex();
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		ComponentMapper mapper = new ComponentMapper(type.getBase(), this);
 		// Size mappers's contents
 		mappers.set(index, mapper);

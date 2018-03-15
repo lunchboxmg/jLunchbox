@@ -12,8 +12,19 @@ public class ComponentMapper<A extends Component> {
 		components = new Bag<A>(componentClass);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public A create(int entityId) throws InstantiationException, IllegalAccessException {
+		A component = get(entityId);
+		if (component == null) {
+			component = (A) type.getBase().newInstance();
+			components.set(entityId, component);
+		}
+		return component;
+	}
+	
 	public A get(int entityId) throws ArrayIndexOutOfBoundsException {
 		return components.get(entityId);
 	}
+	
 
 }

@@ -3,6 +3,7 @@ package com.jlunchbox.test;
 import java.util.Random;
 
 import com.jlunchbox.core.ecs.Component;
+import com.jlunchbox.core.ecs.ComponentManager;
 import com.jlunchbox.core.ecs.ComponentMapper;
 import com.jlunchbox.core.ecs.ComponentType;
 import com.jlunchbox.core.util.Bag;
@@ -23,11 +24,20 @@ import com.jlunchbox.core.util.Bag;
 public class ComponentTest {
 
 	public ComponentTest() { }
-	
+
 	public boolean test() {
 		
-		ComponentType type1 = new ComponentType(0, TestHealthComponent.class);
-		//ComponentMapper<TestHealthComponent> mapper = new ComponentMapper<testHealthComponent>(type1.class);
+		ComponentManager cm = new ComponentManager();
+		try {
+			TestHealthComponent tc = cm.create(0, TestHealthComponent.class);
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		TestHealthComponentLoader loader = new TestHealthComponentLoader();
 		
@@ -67,6 +77,12 @@ public class ComponentTest {
 		 * the max value
 		 * @param max
 		 */
+		
+		public TestHealthComponent() {
+			current = 0;
+			max = 0;
+		}
+		
 		public TestHealthComponent(int max) {
 			current = max;
 			this.max = max;
