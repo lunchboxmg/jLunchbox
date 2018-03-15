@@ -3,6 +3,7 @@ package com.jlunchbox.core.ecs;
 import java.util.IdentityHashMap;
 
 import com.jlunchbox.core.util.Bag;
+import com.jlunchbox.core.util.ReflectionException;
 
 public class ComponentManager {
 	
@@ -13,23 +14,35 @@ public class ComponentManager {
 	// Container of created types
 	private final Bag<ComponentType> types = new Bag<ComponentType>();
 	
+	@SuppressWarnings("rawtypes")
 	private final Bag<ComponentMapper> mappers = new Bag<ComponentMapper>();
 
 	public ComponentManager() {
 
 	}
 	
+	public <T extends Component> T create(int entityId, Class<T> componentClass) throws InstantiationException, IllegalAccessException, ReflectionException {
+		return getMapper(componentClass).create(entityId);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <T extends Component> ComponentMapper<T> getMapper(Class<T> componentClass) {
+		ComponentType type = getTypeFor(componentClass);
+		return mappers.get(type.getIndex());
+	}
+
+	
 	public ComponentType getTypeFor(Class<? extends Component> componentClass) {
 		
 		ComponentType type = typemap.get(componentClass);
 		
 		if (type == null)
-			type = create(componentClass);
+			type = createType(componentClass);
 		
 		return type;
 	}
 	
-	private ComponentType create(Class<? extends Component> componentClass) {
+	private ComponentType createType(Class<? extends Component> componentClass) {
 		
 		ComponentType type = new ComponentType(types.size(), componentClass);
 		typemap.put(componentClass, type);
@@ -48,6 +61,7 @@ public class ComponentManager {
 		mappers.set(index, mapper);
 		
 	}
+	
 
 	
 }

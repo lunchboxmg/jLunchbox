@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL;
 
 import com.jlunchbox.core.input.Keyboard;
 import com.jlunchbox.core.input.Mouse;
-import com.jlunchbox.test.ComponentTest;
+import com.jlunchbox.test.animals.AnimalsTest;
 import com.jlunchbox.core.graphics.Window;
 
 public class Main {
@@ -78,7 +78,7 @@ public class Main {
 	
 	public static void test() {
 		
-		ComponentTest tester = new ComponentTest();
+		AnimalsTest tester = new AnimalsTest();
 		
 		tester.test();
 

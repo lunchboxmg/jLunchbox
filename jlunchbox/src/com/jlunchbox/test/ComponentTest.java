@@ -3,9 +3,12 @@ package com.jlunchbox.test;
 import java.util.Random;
 
 import com.jlunchbox.core.ecs.Component;
+import com.jlunchbox.core.ecs.ComponentManager;
 import com.jlunchbox.core.ecs.ComponentMapper;
 import com.jlunchbox.core.ecs.ComponentType;
+import com.jlunchbox.core.ecs.TestComponent;
 import com.jlunchbox.core.util.Bag;
+import com.jlunchbox.core.util.ReflectionException;
 
 /** 
  * This class is a basic test of my initial plan on how to structure
@@ -26,8 +29,20 @@ public class ComponentTest {
 	
 	public boolean test() {
 		
-		ComponentType type1 = new ComponentType(0, TestHealthComponent.class);
-		//ComponentMapper<TestHealthComponent> mapper = new ComponentMapper<testHealthComponent>(type1.class);
+		ComponentManager cm = new ComponentManager();
+		ComponentType type1 = cm.getTypeFor(TestComponent.class);
+		System.out.println(type1.getBase());
+		try {
+			TestComponent one = cm.create(0, TestComponent.class);
+		} catch (InstantiationException | IllegalAccessException | ReflectionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		//ComponentType type1 = new ComponentType(0, TestHealthComponent.class);
+		//ComponentMapper<TestHealthComponent> mapper = 
+		//		new ComponentMapper<TestHealthComponent>((Class<TestHealthComponent>) type1.getBase(), cm);
 		
 		TestHealthComponentLoader loader = new TestHealthComponentLoader();
 		
@@ -50,7 +65,7 @@ public class ComponentTest {
 		
 		for(int i = 0; i < components.size(); i++) {
 			TestHealthComponent item = components.get(i); 
-			System.out.println(item.max);
+			//System.out.println(item.max);
 		}
 		
 		return true;
@@ -62,26 +77,8 @@ public class ComponentTest {
 		public int current;
 		public int max;
 		
-		/** 
-		 * Base constructor for Health Component.  Health will be set at
-		 * the max value
-		 * @param max
-		 */
-		public TestHealthComponent(int max) {
-			current = max;
-			this.max = max;
-		}
-		
-		/**
-		 * Used to generate a Health Component from a saved state
-		 * @param current
-		 * @param max
-		 */
-		public TestHealthComponent(int current, int max) {
-			this.current = current;
-			this.max = max;
-		}
-		
+		public TestHealthComponent() { }
+
 	}
 
 	public class TestHealthComponentLoader {
@@ -122,8 +119,12 @@ public class ComponentTest {
 			for (int i = 0; i < num; i++)
 				max += rand.nextInt(size) + 1;
 			max += base;
-			
-			return new TestHealthComponent(max);
+
+			TestHealthComponent out =  new TestHealthComponent();
+			out.current = max;
+			out.max = max;
+
+			return out;
 		}
 	}
 }
