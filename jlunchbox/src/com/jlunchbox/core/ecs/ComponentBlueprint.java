@@ -8,14 +8,7 @@ public abstract class ComponentBlueprint {
 		this.type = type;
 	}
 
-	public Component create() {
-		try {
-			return type.getBase().newInstance();
-		} catch (InstantiationException | IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	};
+	public abstract Component create();
 	
 	public ComponentType getComponentType() { return type; }
 

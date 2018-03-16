@@ -26,35 +26,23 @@ import com.jlunchbox.core.util.ReflectionException;
 public class ComponentTest {
 
 	public ComponentTest() { }
-
+	
 	public boolean test() {
 		
 		ComponentManager cm = new ComponentManager();
-<<<<<<< HEAD
-		try {
-			TestHealthComponent tc = cm.create(0, TestHealthComponent.class);
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-=======
 		ComponentType type1 = cm.getTypeFor(TestComponent.class);
 		System.out.println(type1.getBase());
 		try {
 			TestComponent one = cm.create(0, TestComponent.class);
 		} catch (InstantiationException | IllegalAccessException | ReflectionException e) {
->>>>>>> b7d253410d5325e14a828bfda37d56b3f73b4e99
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-<<<<<<< HEAD
-=======
 		
 		//ComponentType type1 = new ComponentType(0, TestHealthComponent.class);
 		//ComponentMapper<TestHealthComponent> mapper = 
 		//		new ComponentMapper<TestHealthComponent>((Class<TestHealthComponent>) type1.getBase(), cm);
->>>>>>> b7d253410d5325e14a828bfda37d56b3f73b4e99
 		
 		TestHealthComponentLoader loader = new TestHealthComponentLoader();
 		
@@ -89,37 +77,8 @@ public class ComponentTest {
 		public int current;
 		public int max;
 		
-<<<<<<< HEAD
-		/** 
-		 * Base constructor for Health Component.  Health will be set at
-		 * the max value
-		 * @param max
-		 */
-		
-		public TestHealthComponent() {
-			current = 0;
-			max = 0;
-		}
-		
-		public TestHealthComponent(int max) {
-			current = max;
-			this.max = max;
-		}
-		
-		/**
-		 * Used to generate a Health Component from a saved state
-		 * @param current
-		 * @param max
-		 */
-		public TestHealthComponent(int current, int max) {
-			this.current = current;
-			this.max = max;
-		}
-		
-=======
 		public TestHealthComponent() { }
 
->>>>>>> b7d253410d5325e14a828bfda37d56b3f73b4e99
 	}
 
 	public class TestHealthComponentLoader {
