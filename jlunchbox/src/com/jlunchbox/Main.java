@@ -13,6 +13,7 @@ import com.jlunchbox.core.input.Keyboard;
 import com.jlunchbox.core.input.Mouse;
 import com.jlunchbox.test.animals.AnimalsTest;
 import com.jlunchbox.core.graphics.Window;
+import com.jlunchbox.core.graphics.model.ObjLoader;
 
 public class Main {
 
@@ -81,6 +82,9 @@ public class Main {
 		AnimalsTest tester = new AnimalsTest();
 		
 		tester.test();
+		
+		ObjLoader loader = new ObjLoader();
+		loader.load("G:\\Alpha\\res\\models\\birch1.obj");
 
 	}
 
