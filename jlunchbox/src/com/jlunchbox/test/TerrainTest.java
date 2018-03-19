@@ -1,5 +1,7 @@
 package com.jlunchbox.test;
 
+import java.util.Arrays;
+
 import com.jlunchbox.core.graphics.terrain.SimplexNoise;
 
 public class TerrainTest {
@@ -18,7 +20,7 @@ public class TerrainTest {
 		
 		System.out.println("Hello");
 		
-		System.out.println(numbers);
+		System.out.println(Arrays.toString(numbers));
 	}
 
 }

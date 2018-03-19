@@ -23,9 +23,6 @@
 	<classpathentry kind="lib" path="C:/LWJGL3/lwjgl-openal-javadoc.jar"/>
 	<classpathentry kind="lib" path="C:/LWJGL3/lwjgl-openal-natives-windows.jar"/>
 	<classpathentry kind="lib" path="C:/LWJGL3/lwjgl-openal-sources.jar"/>
-	<classpathentry kind="lib" path="C:/LWJGL3/lwjgl-opencl.jar"/>
-	<classpathentry kind="lib" path="C:/LWJGL3/lwjgl-opencl-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/LWJGL3/lwjgl-opencl-sources.jar"/>
 	<classpathentry kind="lib" path="C:/LWJGL3/lwjgl-opengl.jar"/>
 	<classpathentry kind="lib" path="C:/LWJGL3/lwjgl-opengles.jar"/>
 	<classpathentry kind="lib" path="C:/LWJGL3/lwjgl-opengles-javadoc.jar"/>
