@@ -28,6 +28,11 @@ public class ComponentMapper<A extends Component> {
 		return (A) ClassReflection.newInstance(type.getBase());
 	}
 	
+	@SuppressWarnings("unchecked")
+	public void add(int entityId, Component component) {
+		components.set(entityId, (A) component);
+	}
+	
 	public A get(int entityId) throws ArrayIndexOutOfBoundsException {
 		return components.get(entityId);
 	}

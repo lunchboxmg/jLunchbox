@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL;
 
 import com.jlunchbox.core.input.Keyboard;
 import com.jlunchbox.core.input.Mouse;
+import com.jlunchbox.test.TerrainTest;
 import com.jlunchbox.test.animals.AnimalsTest;
 import com.jlunchbox.core.graphics.Window;
 import com.jlunchbox.core.graphics.model.ObjLoader;
@@ -79,12 +80,16 @@ public class Main {
 	
 	public static void test() {
 		
-		AnimalsTest tester = new AnimalsTest();
+		//AnimalsTest tester = new AnimalsTest();
 		
+		//tester.test();
+		
+		//ObjLoader loader = new ObjLoader();
+		//loader.load("G:\\Alpha\\res\\models\\birch1.obj");
+		
+		System.out.println("Test");
+		TerrainTest tester = new TerrainTest();
 		tester.test();
-		
-		ObjLoader loader = new ObjLoader();
-		loader.load("G:\\Alpha\\res\\models\\birch1.obj");
 
 	}
 

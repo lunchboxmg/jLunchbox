@@ -31,6 +31,8 @@ public class AnimalsTest {
 		HealthComponent c2 = (HealthComponent) dog.create();
 		System.out.println(c2.current + "/" + c2.max);
 		
+		dog.createNew(world);
+		
 		try {
 			cm.create(0, HealthComponent.class);
 		} catch (InstantiationException | IllegalAccessException | ReflectionException e) {
