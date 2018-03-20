@@ -1,26 +1,23 @@
 package com.jlunchbox.test;
 
-import java.util.Arrays;
-
-import com.jlunchbox.core.graphics.terrain.SimplexNoise;
+import com.jlunchbox.core.graphics.terrain.TerrainGenerator;
 
 public class TerrainTest {
-	
-	SimplexNoise sng;
 
+	private TerrainGenerator generator;
+	
 	public TerrainTest() {
 		
-		sng = new SimplexNoise();
+		generator = new TerrainGenerator();
 	
 	}
 	
 	public void test() {
 		
-		int[] numbers = sng.getTable();
+		System.out.println("Testing terrain generation.");
 		
-		System.out.println("Hello");
-		
-		System.out.println(Arrays.toString(numbers));
 	}
+	
+	public TerrainGenerator getGenerator() {return generator;}
 
 }
