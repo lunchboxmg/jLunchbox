@@ -1,14 +1,17 @@
 package com.jlunchbox.test;
 
-import com.jlunchbox.core.graphics.terrain.TerrainGenerator;
+import java.util.Arrays;
+
+import com.jlunchbox.core.graphics.terrain.Chunk;
+import com.jlunchbox.core.graphics.terrain.Terrain;
 
 public class TerrainTest {
 
-	private TerrainGenerator generator;
+	private Terrain terrain;
 	
 	public TerrainTest() {
 		
-		generator = new TerrainGenerator();
+		terrain = new Terrain(42337);
 	
 	}
 	
@@ -16,8 +19,13 @@ public class TerrainTest {
 		
 		System.out.println("Testing terrain generation.");
 		
+		Chunk test = terrain.hasChunk(0, 0);
+		
+		System.out.println(Arrays.toString(test.getData()));
+		
+		test.genMesh();
+		
 	}
 	
-	public TerrainGenerator getGenerator() {return generator;}
 
 }
