@@ -32,10 +32,6 @@ public class NoiseGeneratorOctaves {
 			float u = (float)chunkX * d3 * xScale;
 			float w = (float)chunkZ * d3 * zScale;
 			
-			
-			
-			
-			
 			generators[i].populateNoiseArray(anoise, u, 10, w, length, 1, length, xScale * d3, 1.0f, zScale * d3, d3);
 			
 			maxAmp += 1.0f / d3;
